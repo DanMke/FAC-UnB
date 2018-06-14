@@ -5,9 +5,9 @@
 		Primo: .asciiz "Eh primo! "
 		Erro: .asciiz "O modulo nao eh primo! "
 		quebra_linha: .asciiz "\n"
-		Resultado1 : .asciiz "A exponencial modular "
-		Resultado2 : .asciiz " elevado a "
-		Resultado3 : .asciiz " (mod "
+		Resultado1 : .asciiz "Aï¿½exponencialï¿½modularï¿½"
+		Resultado2 : .asciiz " elevadoï¿½aï¿½"
+		Resultado3 : .asciiz " (modï¿½"
 		Resultado4 : .asciiz ") eh "
 		Ponto : .asciiz "."
 	.text
@@ -62,9 +62,9 @@ sqrt:
 	sub $s0,$s0,$t0 # Salva em $s5 a subtracao de $s0 por $t0.
 	add $s5,$s5,1 # Incrementa em 1 o registrador $s1.
 	#li $v0,1 # Imprime um inteiro.
-	#move $a0,$s5 # Move o conteúdo de $t3 para $a0.
+	#move $a0,$s5 # Move o conteï¿½do de $t3 para $a0.
 	#syscall # Chamada de funcao.
-	blt $s0,$zero,eh_primo # Verifica se o $s0 é menor ou igual a zero que acabou de calcular a raiz ou se nao for exata o proximo numero da raiz quebrada.
+	blt $s0,$zero,eh_primo # Verifica se o $s0 ï¿½ menor ou igual a zero que acabou de calcular a raiz ou se nao for exata o proximo numero da raiz quebrada.
 	j sqrt	# Caso nao ocorra o caso acima, itera novamente.
 	
 		
@@ -72,13 +72,13 @@ eh_primo: # Funcao para verificar se o numero eh primo.
 	
 	addi $t7,$t7,1 # Incrementa em 1 o $t0.
 	div $s4,$t7 # Faz a divisao de $s4 por $t7, manda o resultado da divisao inteira para o LO e o resto para o HI.
-	mfhi $t6 # Manda o conteudo de HI (resto da divisão) para o $t6.
+	mfhi $t6 # Manda o conteudo de HI (resto da divisï¿½o) para o $t6.
 	beq $t6,$zero,incrementa # Se o $t6 (resto) nao for igual a zero, retorna para o label eh_primo.
 				 # Se o $t6 (resto) for igual a zero, incrementa em 1 o $t1 para contar quantos divisores tera.
 	bne $t7,$s5,eh_primo # Se o $t7 (divisor) nao for igual a $s5, retorna para o label eh_primo.
 			     # $s5 eh o numero final (possivel primo),
-			     # o codigo faz a divisão até chegar nele para contar quantas divisoes sem resto foram obtidas.		     
-	#bne $t5,1,imprime_erro # Se o $t1 não for igual a 2 (divisoes sem resto) imprime erro, pois não eh primo.
+			     # o codigo faz a divisï¿½o atï¿½ chegar nele para contar quantas divisoes sem resto foram obtidas.		     
+	#bne $t5,1,imprime_erro # Se o $t1 nï¿½o for igual a 2 (divisoes sem resto) imprime erro, pois nï¿½o eh primo.
 	j calc_exp # Pula para o label calc_dividendo.
 	
 incrementa:
@@ -90,7 +90,7 @@ incrementa:
 	
 calc_exp: # Calcula o dividendo (base elevada ao expoente inseridos no inicio do programa).
 
-	bgt $s1,$s4,base_maior # Se a base for maior que o módulo va para base_maior.
+	bgt $s1,$s4,base_maior # Se a base for maior que o mï¿½dulo va para base_maior.
 		
 	div $s2,$s7 # Se a base for menor, divide o expoente por dois.
 	mfhi $t3 # Passa o resto para $t3.
@@ -159,7 +159,7 @@ imprime_sucesso:
 	syscall # Chamada de funcao.
 	
 	li $v0,1 # Imprime um inteiro.
-	move $a0,$t9 # Move o conteúdo de $t9 para $a0.
+	move $a0,$t9 # Move o conteï¿½do de $t9 para $a0.
 	syscall # Chamada de funcao.
 	
 	li $v0,4 # Carregando $v0, passo1 = carregar numero no registrador $v0, 4 = printar uma string.
@@ -167,7 +167,7 @@ imprime_sucesso:
 	syscall # Chamada de funcao.
 	
 	li $v0,1 # Imprime um inteiro.
-	move $a0,$s4 # Move o conteúdo de $s4 para $a0.
+	move $a0,$s4 # Move o conteï¿½do de $s4 para $a0.
 	syscall # Chamada de funcao.
 	
 	li $v0,4 # Carregando $v0, passo1 = carregar numero no registrador $v0, 4 = printar uma string.
@@ -175,7 +175,7 @@ imprime_sucesso:
 	syscall # Chamada de funcao.
 	
 	li $v0,1 # Imprime um inteiro.
-	move $a0,$t3 # Move o conteúdo de $t3 para $a0.
+	move $a0,$t3 # Move o conteï¿½do de $t3 para $a0.
 	syscall # Chamada de funcao.
 	
 	li $v0,4 # Carregando $v0, passo1 = carregar numero no registrador $v0, 4 = printar uma string.
